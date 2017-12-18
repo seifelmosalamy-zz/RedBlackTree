@@ -3,7 +3,8 @@
 #include <stddef.h>
 #include<cassert>
 #include<string>
-
+#include<vector>
+#include <iomanip> 
 using namespace std;
 
 RedBlackTree::RedBlackTree() :root(NULL)
@@ -286,14 +287,19 @@ void RedBlackTree::search(int value)
 	{
 		
 		if (ptr->color == 1)
-
+		{
+			color = "Red";
+			
+		}
+		else if(ptr->color== 0){
+	
 			color = "Black";
-		else
-		color = "Red";
-		if( ptr->parent == NULL )
+			
+			}
+		if (ptr->parent == NULL)
 		{ 
 			cout << "Node found: " << ptr->data << endl;
-			cout << "It's color is: " << color << endl;
+			cout << "It's color is: " << ptr->color << endl;
 			cout << "This node has no parent ,It's the root!" << endl;
 		}
 		else
@@ -302,11 +308,54 @@ void RedBlackTree::search(int value)
 			cout << "It's color is: " << color << endl;
 			cout << "It's parent is " << ptr->parent->data << endl;
 		}
-		//cout << "It's parent is: " << ptr->parent->data << endl;
+	
 	
 			
 	}
 }
+
+void RedBlackTree::Draw(int array[])
+{
+	
+}
+
+void RedBlackTree:: DrawTree(node* p, int indent =0)
+{
+	if (p != NULL) {
+		if (p->right) {
+			DrawTree(p->right, indent + 4);
+		}
+		if (indent) {
+			cout << setw(indent) << ' ';
+		}
+		if (p->right) cout << " /\n" << setw(indent) << ' ';
+		cout << p->data << "\n ";
+		if (p->left) {
+			cout << setw(indent) << ' ' << " \\\n";
+			DrawTree(p->left, indent + 4);
+		}
+	}
+}
+/* 
+void RedBlackTree:: getLine(const node *root, int depth, vector<int>& vals)
+{
+	if (depth <= 0 && root != nullptr) {
+		vals.push_back(root->data);
+		return;
+	}
+	if (root->left != nullptr)
+		getLine(root->left, depth - 1, vals);
+
+	else if (depth - 1 <= 0)
+		vals.push_back(placeholder);
+
+	if (root->right != nullptr)
+		getLine(root->right, depth - 1, vals);
+
+	else if (depth - 1 <= 0)
+		vals.push_back(placeholder);
+}*/
+
 
 void RedBlackTree::postOrderDelete(nodePointer ptr) {
 	if (ptr != NULL)

@@ -1,5 +1,5 @@
 #pragma once
-
+#include<string>
 #include <stddef.h>
 
 // moshkela lw fe value fel tree by3mlaha insert tany 3ady !!
@@ -7,9 +7,10 @@
 
 // moshkela lw fe value fel tree by3mlaha insert tany 3ady !!
 
-enum NodeColor { RED, BLACK };
+enum NodeColor {RED, BLACK };
 
-class RedBlackTree {
+class RedBlackTree 
+{
 private:
 	class node {
 	public:
@@ -20,7 +21,8 @@ private:
 		node* right;
 
 		node() :parent(NULL), left(NULL), right(NULL), color(RED)
-		{}
+		{
+		}
 
 		node(int item) :data(item), parent(NULL), left(NULL), right(NULL), color(RED)
 		{}
@@ -30,11 +32,15 @@ private:
 	nodePointer root;
 
 public:
+
 	RedBlackTree();
 	void insert(int);
+
+	void DrawTree(node* p, int indent);
 	void insertfix(nodePointer&, nodePointer&);
 	void rotateLeft(nodePointer&);
 	void rotateRight(nodePointer&);
+	public :int ColorChanged;
 	//======================================
 	void remove(int);
 	void removefix(nodePointer);
@@ -71,5 +77,6 @@ public:
 	}
 	//======================================
 	void postOrderDelete(nodePointer ptr);
+	void Draw(int array[]);
 	~RedBlackTree();
 };
